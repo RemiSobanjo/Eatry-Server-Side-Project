@@ -1,5 +1,7 @@
 const express = require("express");
 const authRouter = require("../routes/users.js");
+const menuRouter = require("../routes/menu.js");
+const orderRouter = require("../routes/order.js");
 
 require("dotenv").config();
 
@@ -25,6 +27,8 @@ module.exports = (app) => {
     const version = process.env.VERSION;
 
     app.use(`${version}/authenticate`, authRouter);
+    app.use(`${version}/menu`, menuRouter);
+    app.use(`${version}/order`, orderRouter);
 
     app.get("/", (req, res, next) => {
         res.json({
